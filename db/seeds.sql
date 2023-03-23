@@ -1,4 +1,4 @@
-USE employeeTracker_db;
+USE employee_db;
 
 INSERT INTO department (name) VALUES ('Engineer');
 INSERT INTO department (name) VALUES ('Accounting');

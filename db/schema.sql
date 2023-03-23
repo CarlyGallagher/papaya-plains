@@ -1,10 +1,10 @@
 -- Drops the task_saver_db if it already exists --
-DROP DATABASE IF EXISTS employeeTracker_db;
+DROP DATABASE IF EXISTS employee_db;
 
 -- Create the database task_saver_db and specified it for use.
-CREATE DATABASE employeeTracker_db;
+CREATE DATABASE employee_db;
 
-USE employeeTracker_db;
+USE employee_db;
 
 -- Create the table tasks.
 CREATE TABLE department (
