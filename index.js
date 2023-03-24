@@ -17,3 +17,33 @@ connection.connect(function (err) {
     }
 
 });
+
+getJob();
+
+function getJob() {
+    inquirer
+        .prompt(
+            {
+                name: 'job',
+                type: 'list',
+                message: 'Which would you like to do?',
+                choices: ['add', 'view', 'update', 'exit'],
+            }
+        ).then(function ({ job }) {
+            switch (job) {
+                case 'add':
+                    add();
+                    break;
+                case 'view':
+                    view();
+                    break;
+                case 'update':
+                    update();
+                    break;
+                case 'exit':
+                    connection.end()
+                    return;
+            }
+
+        })
+}
