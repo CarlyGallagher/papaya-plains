@@ -47,3 +47,28 @@ function getJob() {
 
         })
 }
+
+function add() {
+    inquirer
+        .prompt(
+            {
+                name: "db",
+                message: 'Which would you like to add?',
+                type: 'list',
+                choices: ['department', 'role', 'employee'],
+            }
+        ).then(function ({ db }) {
+            switch (db) {
+                case "department":
+                    add_department()
+                    break;
+                case "role":
+                    add_role()
+                    break;
+                case 'employee':
+                    add_employee();
+                    break;
+            }
+        })
+
+}
