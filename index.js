@@ -153,3 +153,22 @@ function add_employee() {
         })
     })
 }
+
+function view() {
+    inquirer
+        .prompt(
+            {
+                name: "db",
+                message: 'Which would you like to view?',
+                type: 'list',
+                choices: ['department', 'role', 'employee'],
+            }
+        ).then(function ({ db }) {
+            connection.query(`SELECT * FROM ${db}`, function (err, data) {
+                if (err) throw err;
+
+                console.table(data)
+                getJob();
+            })
+        })
+}
