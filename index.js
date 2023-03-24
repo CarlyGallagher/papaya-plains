@@ -172,3 +172,113 @@ function view() {
             })
         })
 }
+
+function update() {
+    inquirer
+        .prompt(
+            {
+                name: 'update',
+                message: 'What would you like to update?',
+                type: 'list',
+                choices: ['role', 'manager']
+            }
+        ).then(function ({ update }) {
+            switch (update) {
+                case 'role':
+                    update_role();
+                    break;
+                case 'manager':
+                    update_manager();
+                    break;
+            }
+        })
+}
+
+function update_role() {
+    connection.query(`SELECT * FROM employee`, function (err, data) {
+        if (err) throw err;
+
+        let employees = [];
+        let roles = [];
+
+        for (let i = 0; i < data.length; i++) {
+            employees.push(data[i].first_name)
+        }
+
+        connection.query(`SELECT * FROM role`, function (err, data) {
+            if (err) throw err;
+
+            for (let i = 0; i < data.length; i++) {
+                roles.push(data[i].title)
+            }
+
+            inquirer
+                .prompt([
+                    {
+                        name: 'employee_id',
+                        message: "Who's role needs to be updated",
+                        type: 'list',
+                        choices: employees
+                    },
+                    {
+                        name: 'role_id',
+                        message: "What is the new role?",
+                        type: 'list',
+                        choices: roles
+                    }
+                ]).then(function ({ employee_id, role_id }) {
+                    //UPDATE `table_name` SET `column_name` = `new_value' [WHERE condition]
+                    connection.query(`UPDATE employee SET role_id = ${roles.indexOf(role_id) + 1} WHERE id = ${employees.indexOf(employee_id) + 1}`, function (err, data) {
+                        if (err) throw err;
+
+                        getJob();
+                    })
+                })
+        })
+
+    })
+}
+
+function update_manager() {
+    connection.query(`SELECT * FROM employee`, function (err, data) {
+        if (err) throw err;
+
+        let employees = [];
+
+        for (let i = 0; i < data.length; i++) {
+            employees.push(data[i].first_name)
+        }
+
+        inquirer
+            .prompt([
+                {
+                    name: 'employee_id',
+                    message: 'Who would you like to update?',
+                    type: 'list',
+                    choices: employees
+                },
+                {
+                    name: "manager_id",
+                    message: "Who's their new manager?",
+                    type: 'list',
+                    choices: ['none'].concat(employees)
+                }
+            ]).then(({ employee_id, manager_id }) => {
+                let queryText = ""
+                if (manager_id !== "none") {
+                    queryText = `UPDATE employee SET manager_id = ${employees.indexOf(manager_id) + 1} WHERE id = ${employees.indexOf(employee_id) + 1}`
+                } else {
+                    queryText = `UPDATE employee SET manager_id = ${null} WHERE id = ${employees.indexOf(employee_id) + 1}`
+                }
+
+                connection.query(queryText, function (err, data) {
+                    if (err) throw err;
+
+                    getJob();
+                })
+
+            })
+
+    });
+
+}
