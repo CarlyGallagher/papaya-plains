@@ -22,7 +22,8 @@
 ​
 ## Credits
 ​
-- 
+- https://www.npmjs.com/package/inquirer/v/8.2.4
+- https://sabe.io/blog/node-npm-start-command-not-working
 - 
 ​
 ## License
