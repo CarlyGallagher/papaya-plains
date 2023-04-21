@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const inquirer = require("inquirer");
 require("console.table");
 // const sql = require("./sql");
@@ -135,7 +135,7 @@ function viewEmployeeByDepartment() {
 
     promptDepartment(departmentChoices);
   });
-  // console.log(query.sql);
+   console.log(query.sql);
 }
 
 // User choose the department list, then employees pop up
@@ -310,7 +310,7 @@ function promptDelete(deleteEmployeeChoices) {
 
 //========================================= 6."Update Employee Role" / UPDATE,
 
-function updateEmployeeRole() { 
+function updateEmployeeRole() {
   employeeArray();
 
 }
@@ -332,7 +332,7 @@ function employeeArray() {
     if (err) throw err;
 
     const employeeChoices = res.map(({ id, first_name, last_name }) => ({
-      value: id, name: `${first_name} ${last_name}`      
+      value: id, name: `${first_name} ${last_name}`
     }));
 
     console.table(res);
@@ -354,7 +354,7 @@ function roleArray(employeeChoices) {
     if (err) throw err;
 
     roleChoices = res.map(({ id, title, salary }) => ({
-      value: id, title: `${title}`, salary: `${salary}`      
+      value: id, title: `${title}`, salary: `${salary}`
     }));
 
     console.table(res);
@@ -386,8 +386,8 @@ function promptEmployeeRole(employeeChoices, roleChoices) {
       var query = `UPDATE employee SET role_id = ? WHERE id = ?`
       // when finished prompting, insert a new item into the db with that info
       connection.query(query,
-        [ answer.roleId,  
-          answer.employeeId
+        [answer.roleId,
+        answer.employeeId
         ],
         function (err, res) {
           if (err) throw err;
