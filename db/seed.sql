@@ -4,24 +4,22 @@ USE employeesDB;
 INSERT INTO department (name)
 VALUES ("Sales");
 INSERT INTO department (name)
-VALUES ("Accounting");
+VALUES ("Engineering");
 INSERT INTO department (name)
-VALUES ("Customer Service");
+VALUES ("Finance");
 INSERT INTO department (name)
-VALUES ("Human Resources");
-INSERT INTO department (name)
-VALUES ("Quality and Reassurance");
+VALUES ("Legal");
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("Sales Lead", 100000, 1);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Head Accountant", 150000, 2);
+VALUES ("Lead Engineer", 150000, 2);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Customer Service Rep", 120000, 2);
+VALUES ("Software Engineer", 120000, 2);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Lead of Human Resources", 125000, 3);
+VALUES ("Accountant", 125000, 3);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Head of Quality and Reassurance", 250000, 4);
+VALUES ("Legal Team Lead", 250000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("Meredith", "Palmer", 1, 3);
