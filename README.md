@@ -37,14 +37,14 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Links
 - Deployed Webpage: N/A
-- GitHub Repo Page: 
-- Castify Video Demo: 
+- GitHub Repo Page: https://github.com/CarlyGallagher/papaya-plains.git
+- Castify Video Demo: https://drive.google.com/file/d/1NUSKMpaHn9L_QBPNewLCh_gyjI3P1iYM/view
 ​
 ## Credits
 ​
 - https://www.npmjs.com/package/inquirer/v/8.2.4
 - https://sabe.io/blog/node-npm-start-command-not-working
-- 
+- https://stackoverflow.com/questions/41887460/select-list-is-not-in-group-by-clause-and-contains-nonaggregated-column-inc
 ​
 ## License
 ​
